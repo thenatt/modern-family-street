@@ -1,0 +1,99 @@
+:root {
+  --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-med: 420ms;
+
+  --nav-h: 56px;
+
+  /* Street (default) */
+  --bg: #1B2233;
+  --bg-2: #232C42;
+  --surface: #2A3450;
+  --ink: #F4EEE2;
+  --ink-2: #C9C3B6;
+  --ink-3: #8F8A80;
+  --accent: #E0A458;
+  --accent-2: #F6D9A0;
+  --accent-3: #C4623A;
+  --line: rgba(244, 238, 226, 0.14);
+  --shadow: rgba(8, 12, 24, 0.55);
+  --glow: rgba(246, 217, 160, 0.55);
+}
+
+[data-house='dunphy'] {
+  --bg: #DCE3D0;
+  --bg-2: #CFD9C1;
+  --surface: #EAF0E1;
+  --ink: #1F3E42;
+  --ink-2: #2F5D62;
+  --ink-3: #5F7F82;
+  --accent: #E0A458;
+  --accent-2: #C4623A;
+  --accent-3: #2F5D62;
+  --line: rgba(31, 62, 66, 0.16);
+  --shadow: rgba(47, 93, 98, 0.32);
+  --glow: rgba(224, 164, 88, 0.45);
+}
+
+[data-house='pritchett'] {
+  --bg: #14213D;
+  --bg-2: #1A2A4C;
+  --surface: #22335A;
+  --ink: #F3EBDD;
+  --ink-2: #D8CDB9;
+  --ink-3: #9A9280;
+  --accent: #E5B25D;
+  --accent-2: #D63384;
+  --accent-3: #7BC8C4;
+  --line: rgba(243, 235, 221, 0.14);
+  --shadow: rgba(4, 8, 20, 0.6);
+  --glow: rgba(229, 178, 93, 0.5);
+}
+
+[data-house='tucker-pritchett'] {
+  --bg: #4A1F2E;
+  --bg-2: #55263A;
+  --surface: #612C42;
+  --ink: #FBF1EC;
+  --ink-2: #F2C6C2;
+  --ink-3: #C79A98;
+  --accent: #BFD8CF;
+  --accent-2: #D9A441;
+  --accent-3: #E6473C;
+  --line: rgba(251, 241, 236, 0.14);
+  --shadow: rgba(30, 8, 16, 0.6);
+  --glow: rgba(191, 216, 207, 0.45);
+}
+
+[data-house='quiz'] {
+  --bg: #1B2233;
+  --bg-2: #232C42;
+  --surface: #2A3450;
+  --ink: #F4EEE2;
+  --ink-2: #C9C3B6;
+  --ink-3: #8F8A80;
+  --accent: #E0A458;
+  --accent-2: #F6D9A0;
+  --accent-3: #D63384;
+  --line: rgba(244, 238, 226, 0.14);
+  --shadow: rgba(8, 12, 24, 0.55);
+  --glow: rgba(246, 217, 160, 0.55);
+}

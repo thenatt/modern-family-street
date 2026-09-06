@@ -1,0 +1,123 @@
+.street { position: relative; }
+.street__stage {
+  position: relative; height: 100svh; min-height: 640px; overflow: hidden;
+  background: #1B2233;
+}
+.scene__layer { position: absolute; inset: 0; pointer-events: none; will-change: transform; }
+.scene__layer svg { position: absolute; left: -4%; width: 108%; max-width: none; }
+.scene__layer--sky { z-index: 0; }
+.scene__layer--clouds { z-index: 1; }
+.scene__layer--hills { z-index: 3; }
+.scene__layer--street { z-index: 3; }
+.scene__layer--lamps { z-index: 4; }
+.scene__fireflies { z-index: 4; }
+.street__houses { z-index: 5; }
+.scene__layer--fg { z-index: 6; }
+.scene__layer--sky svg { top: -4%; height: 108%; }
+.scene__layer--clouds svg { top: -4%; height: 108%; }
+.scene__layer--hills svg { bottom: 18%; height: 46%; }
+.scene__layer--street svg { bottom: -2%; height: 24%; }
+.scene__layer--lamps svg { bottom: 12%; height: 42%; }
+.scene__layer--fg svg { bottom: -2%; height: 12%; }
+.star { animation: twinkle 3.2s ease-in-out infinite; animation-delay: var(--d); }
+@keyframes twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+.scene__sun { animation: sunPulse 8s ease-in-out infinite; transform-origin: center; }
+@keyframes sunPulse { 0%, 100% { opacity: .85; } 50% { opacity: 1; } }
+
+.scene__fireflies { position: absolute; inset: 0; pointer-events: none; }
+.firefly {
+  position: absolute; left: var(--x); top: var(--y); width: 4px; height: 4px; border-radius: 50%;
+  background: #F6D9A0; box-shadow: 0 0 10px 3px rgba(246, 217, 160, .5);
+  opacity: 0; animation: fly var(--d) ease-in-out infinite; animation-delay: var(--delay);
+}
+@keyframes fly {
+  0% { transform: translate(0, 0); opacity: 0; }
+  20% { opacity: .9; }
+  50% { transform: translate(24px, -30px); opacity: .3; }
+  80% { opacity: .9; }
+  100% { transform: translate(-16px, -60px); opacity: 0; }
+}
+
+/* Hero copy: centered, sitting behind the hills so the landscape masks its lower edge */
+.street__copy {
+  position: absolute; left: 0; right: 0; top: clamp(4.5rem, 19vh, 12rem); z-index: 2;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-4);
+  padding: 0 clamp(1rem, 4vw, 3rem);
+  pointer-events: none; will-change: transform;
+}
+.street__copy .label { color: var(--accent-2); }
+.street__title {
+  font-size: clamp(3.6rem, 12.5vw, 11.5rem); line-height: 0.92; margin: 0; letter-spacing: -0.03em;
+  text-shadow: 0 16px 60px rgba(0, 0, 0, .35);
+}
+.street__title em { color: var(--accent); }
+.street__cta { font-size: clamp(1.2rem, 2.1vw, 1.85rem); color: var(--ink); margin-top: var(--space-2); text-shadow: 0 8px 30px rgba(0,0,0,.5); }
+
+.street__houses {
+  position: absolute; left: 0; right: 0; bottom: 14.5%;
+  display: flex; justify-content: center; align-items: flex-end; gap: clamp(0.5rem, 3vw, 3.5rem);
+  padding: 0 clamp(1rem, 4vw, 4rem);
+  will-change: transform;
+}
+.lot { position: relative; display: flex; flex-direction: column; align-items: center; flex: 0 1 clamp(220px, 27vw, 400px); }
+.house {
+  width: 100%; display: block; border-radius: 12px;
+  filter: drop-shadow(0 30px 40px rgba(5, 8, 20, .5));
+  transition: filter var(--dur-med) var(--ease-out);
+  will-change: transform;
+}
+.house:hover, .house:focus-visible { filter: drop-shadow(0 30px 50px rgba(5, 8, 20, .6)) drop-shadow(0 0 40px var(--glow)); }
+.house:focus-visible { outline-offset: 12px; }
+.house-svg { width: 100%; height: auto; overflow: visible; }
+.porch-light { animation: twinkle 2.6s ease-in-out infinite; }
+.festoon circle { animation: twinkle 1.8s ease-in-out infinite; animation-delay: var(--d); }
+.ripple { animation: ripple 3s ease-in-out infinite; }
+@keyframes ripple { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+
+/* Enter keycap above the house */
+.house__key {
+  position: absolute; bottom: 100%; left: 50%; margin-left: -4.2rem; width: 8.4rem; padding-bottom: 0.9rem;
+  display: flex; justify-content: center; z-index: 7; cursor: pointer;
+}
+.house__key-cap {
+  display: inline-flex; align-items: center; gap: .55rem;
+  padding: .7rem 1.2rem; border-radius: 12px;
+  font-family: var(--font-mono); font-size: .92rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  background: linear-gradient(#FFF9EE, #F0E7D6); color: #1B2233;
+  border: 1px solid #D9CFBC;
+  box-shadow: 0 5px 0 #B9AE98, 0 6px 0 1px rgba(0,0,0,.25), 0 22px 30px -12px rgba(0,0,0,.6);
+  transition: transform 80ms ease, box-shadow 80ms ease;
+}
+.house__key-cap kbd { font-family: inherit; font-size: 1.05em; letter-spacing: 0; color: var(--accent-3); }
+.lot:active .house__key-cap, .house__key:active .house__key-cap { transform: translateY(4px); box-shadow: 0 1px 0 #B9AE98, 0 2px 0 1px rgba(0,0,0,.25), 0 10px 18px -10px rgba(0,0,0,.6); }
+
+.house__label {
+  position: absolute; top: calc(100% + 0.5rem); left: -15%; right: -15%;
+  display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;
+  pointer-events: none; z-index: 7;
+}
+.house__label .label { color: var(--accent-2); }
+.house__label .tagline { font-size: 1.05rem; color: var(--ink); text-shadow: 0 4px 20px rgba(0,0,0,.6); }
+
+.flood { position: fixed; inset: 0; z-index: 70; pointer-events: none; will-change: clip-path, opacity; }
+
+/* mobile: walk down the block */
+@media (max-width: 899px) {
+  .street__stage { height: auto; min-height: 0; padding-bottom: 5rem; }
+  .street__copy { position: relative; top: auto; padding: 6rem clamp(1.25rem, 5vw, 3rem) 3rem; }
+  .street__title { font-size: clamp(2.8rem, 15vw, 5rem); }
+  .street__cta { font-size: 1.15rem; }
+  .scene__sky circle { display: none; }
+  .scene__layer--hills svg { bottom: auto; top: 30vh; height: 30vh; }
+  .scene__layer--street svg { display: none; }
+  .scene__layer--lamps svg { display: none; }
+  .scene__layer--fg svg { display: none; }
+  .street__houses { position: relative; bottom: auto; flex-direction: column; align-items: stretch; gap: 4.5rem; padding: 0 1.25rem; }
+  .lot { flex: none; width: min(100%, 420px); margin: 0 auto; }
+  .lot::after {
+    content: ''; position: absolute; left: -10vw; right: -10vw; bottom: 0; height: 26px; z-index: -1;
+    background: linear-gradient(#26304A 0 40%, #141A2C 40% 50%, #1B2233 50%);
+  }
+  .house__label { position: static; margin-top: .75rem; }
+  .house__key { position: static; margin: 0 0 1rem; width: auto; padding-bottom: 0; }
+}

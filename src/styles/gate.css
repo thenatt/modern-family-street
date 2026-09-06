@@ -1,0 +1,19 @@
+.gate {
+  position: fixed; inset: 0; z-index: 90;
+  display: grid; place-items: center; padding: var(--space-6);
+  background: radial-gradient(120% 100% at 50% 0%, #2A3450 0%, #1B2233 60%, #10141F 100%);
+}
+.gate__card {
+  width: min(520px, 100%); text-align: center;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, #F4EEE2 6%, transparent);
+  border: 1px solid rgba(244, 238, 226, 0.12);
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,.7);
+}
+.gate__bell { width: 120px; margin: 0 auto var(--space-4); filter: drop-shadow(0 18px 24px rgba(0,0,0,.45)); }
+.gate__bell .gate__button { transform-origin: 60px 60px; animation: bellPulse 2.4s var(--ease-in-out) infinite; }
+@keyframes bellPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+.gate__title { font-size: clamp(2rem, 6vw, 3rem); margin: var(--space-2) 0 var(--space-4); color: #F4EEE2; }
+.gate__body { color: #C9C3B6; max-width: 40ch; margin: 0 auto var(--space-6); font-size: 1rem; }
+.gate__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
