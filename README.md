@@ -7,6 +7,8 @@ the eight-question household quiz.
 Everything is hand-coded inline SVG animated with GSAP. Sounds are synthesized in the browser with the
 Web Audio API; no audio files, no network logos, no photos.
 
+**Live:** [https://modern-family-street.vercel.app](https://modern-family-street.vercel.app)
+
 ## Run
 
 ```bash
