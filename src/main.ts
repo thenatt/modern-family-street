@@ -6,7 +6,8 @@ import './styles/street.css';
 import './styles/house.css';
 import './styles/quiz.css';
 
-import { route, startRouter } from './router';
+import { initAnalytics, trackPageview } from './analytics';
+import { onRoute, route, startRouter } from './router';
 import { mountNav } from './components/nav';
 import { showSoundGate } from './components/sound-gate';
 import { mountCredit } from './components/credit';
@@ -18,6 +19,9 @@ import { HOUSES, HOUSE_ORDER } from './data/houses';
 route('/', streetView);
 HOUSE_ORDER.forEach((id) => route(HOUSES[id].path, () => houseView(HOUSES[id])));
 route('/quiz', quizView);
+
+initAnalytics();
+onRoute((path) => trackPageview(path));
 
 mountNav(document.getElementById('nav')!);
 mountCredit(document.getElementById('credit')!);

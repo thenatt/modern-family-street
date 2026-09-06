@@ -7,6 +7,7 @@ import { play } from '../audio/sfx';
 import { prefersReducedMotion } from '../motion/reduced-motion';
 import { floodOut } from '../motion/transitions';
 import { renderShareCard } from '../share/card';
+import { track } from '../analytics';
 
 const KEY = 'mf:quiz-result';
 const LETTERS = ['A', 'B', 'C', 'D'];
@@ -111,6 +112,9 @@ export function quizView(): View {
   }
 
   function celebrate(panel: HTMLElement): void {
+    const id = score(picks);
+    const c = CHARACTERS[id];
+    track('quiz_complete', { character: c.name, character_id: id, house: c.house });
     play('fanfare');
     if (reduced()) return;
     const bits = panel.querySelectorAll('.qz__confetti span');
@@ -123,8 +127,16 @@ export function quizView(): View {
   }
 
   function bind(): void {
-    root.querySelector('[data-action="start"]')?.addEventListener('click', () => { if (busy) return; busy = true; play('pop'); picks = []; step = 0; swap(); });
-    root.querySelector('[data-action="retry"]')?.addEventListener('click', () => { if (busy) return; busy = true; play('pop'); picks = []; step = 0; swap(); });
+    root.querySelector('[data-action="start"]')?.addEventListener('click', () => {
+      if (busy) return; busy = true; play('pop'); picks = []; step = 0;
+      track('quiz_start', { retry: false });
+      swap();
+    });
+    root.querySelector('[data-action="retry"]')?.addEventListener('click', () => {
+      if (busy) return; busy = true; play('pop'); picks = []; step = 0;
+      track('quiz_start', { retry: true });
+      swap();
+    });
     root.querySelectorAll<HTMLButtonElement>('.qz__answer').forEach((b) => {
       b.addEventListener('pointerenter', () => play('tick'));
       b.addEventListener('click', () => {
